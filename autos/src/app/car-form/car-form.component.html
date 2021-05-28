@@ -1,0 +1,36 @@
+<div class="row mt-4">
+    <div class="col-md-6">
+      <form [formGroup]="carForm">
+        <label for="type">Típus</label>
+        <input type="text" class="form-control" id="type" formControlName="type">
+        <label for="manufacturer">Gyártó</label>
+        <input type="text" class="form-control" id="manufacturer" formControlName="manufacturer">
+        <label for="imgUrl">Kép URL-je</label>
+        <input type="text" class="form-control" id="imgUrl" formControlName="imgUrl">
+        <div class="text-danger" *ngIf="imgUrl.invalid && (imgUrl.dirty || imgUrl.touched)">
+            <small *ngIf="imgUrl.errors.pattern">A megadott cím nem valid.</small>
+        </div>
+        <label for="license">Rendszám</label>
+        <input type="text" class="form-control" id="license" formControlName="license">
+        <label for="rfee">Bérleti díj</label>
+        <input type="number" autofocus="autofocus" class="form-control" id="rfee" formControlName="rfee">
+        <div class="text-danger" *ngIf="rfee.invalid && (rfee.dirty || rfee.touched)">
+            <small *ngIf="rfee.errors.min">Ennek az értéknek nagyobbnak kell lennie mint 0.</small>
+        </div>
+        <label for="kmfee">Kilométerdíj</label>
+        <input type="number" autofocus="autofocus" class="form-control" id="kmfee" formControlName="kmfee">
+        <div class="text-danger" *ngIf="kmfee.invalid && (kmfee.dirty || kmfee.touched)">
+            <small *ngIf="kmfee.errors.min">Ennek az értéknek nagyobbnak kell lennie mint 0.</small>
+        </div>
+        <label for="rentedby">Bérlő</label>
+        <select [compareWith]="compareUsers" class="form-control" id="rentedby" formControlName="rentedby">
+          <option *ngFor="let user of users" [ngValue]="user">{{user.name}}</option>
+        </select>
+        <label for="condition">Állapot</label>
+        <select class="form-control" id="states" formControlName="states">
+            <option *ngFor="let state of states" [ngValue]="state">{{state.title}}</option>
+        </select>
+        <button class="btn btn-primary mt-4" (click)="addCar()" [disabled]="carForm.invalid">Mentés</button>
+      </form>
+    </div>
+  </div>

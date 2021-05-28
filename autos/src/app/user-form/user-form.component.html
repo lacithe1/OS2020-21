@@ -1,0 +1,15 @@
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage">{{errorMessage}}</div>
+        <div class="alert alert-success" role="alert" *ngIf="successMessage">{{successMessage}}</div>
+        <form [formGroup]="userForm">
+        <label for="name">Név</label>
+        <input type="text" class="form-control" id="name" formControlName="name">
+        <label for="idnumber">SZIG szám</label>
+        <input type="text" class="form-control" id="idnumber" formControlName="idnumber">
+        <label for="phonenumber">Telefonszám</label>
+        <input type="text" autofocus="autofocus" class="form-control" id="phonenumber" formControlName="phonenumber">
+        <button class="btn btn-primary mt-4" (click)="createUser()">Kliens Mentése</button>
+      </form>
+    </div>
+  </div>
